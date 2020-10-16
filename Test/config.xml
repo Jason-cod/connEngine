@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<configuration>
+    <database name="Omkar">
+        <dbtype>postgresql</dbtype>
+        <dbname>ofralcpg</dbname>
+        <dbhost>raja.db.elephantsql.com</dbhost>
+        <dbport>5432</dbport>
+        <dbuser>ofralcpg</dbuser>
+        <dbpass>VBM5SyqirJgXvr5ajHWdaEhxd-ozPU1i</dbpass>
+    </database>
+</configuration>
