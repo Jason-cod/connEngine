@@ -1,2 +1,2 @@
 from connection import run
-run("select version();")
+run("select * from Branch;")
