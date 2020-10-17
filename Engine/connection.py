@@ -23,6 +23,8 @@ def run(query):
 
             cursor = connection.cursor()
             cursor.execute(query)
+            if query.startswith("Insert"):
+                connection.commit()
             print(cursor.fetchone())
 
         except(Exception,psycopg2.Error) as error:
