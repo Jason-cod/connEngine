@@ -79,7 +79,7 @@ def run_DataTable(query):
 
             cursor = connection.cursor()
             cursor.execute(query)
-            if "insert" in query.lower(): # ignoring case sensitive for insert keyword
+            if "insert" in query.lower() or "create" in query.lower(): # ignoring case sensitive for insert keyword
                 connection.commit()
             if query.lower().startswith("select"):
                 return cursor.fetchall()
@@ -88,6 +88,7 @@ def run_DataTable(query):
             print(error)
         finally:
             if(connection):
+                connection.commit()
                 cursor.close()
                 connection.close()
 

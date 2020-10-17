@@ -1,18 +1,12 @@
 from connection import run, run_DataTable
-#run ("""drop table Branch""")
-'''
-run("""create table Branch
-(
-	branchname varchar(20),
-	branchcity varchar(20),
-	asset integer,
-	check (asset > 0),
-	constraint pk_branch primary key(branchname)
-);
-""")
-'''
-run("insert into Branch values('SBI','Kolhapur',200);")
-run("select * from Branch;")
-s = run_DataTable("select * from Branch;")
-print("----------")
+run ("""drop table customers""")
+print("----------1")
+run("CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))")
+print("----------2")
+run("INSERT INTO customers (name, address) VALUES ('SBI','Kolhapur')")
+print("----------3")
+run("SELECT * FROM customers")
+print("----------4")
+s = run_DataTable("SELECT * FROM customers")
+print("----------5")
 print(s)
