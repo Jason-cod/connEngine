@@ -2,11 +2,11 @@
 <configuration>
     <database name="mysql">
         <dbtype>mysql</dbtype>
-        <dbname>sql12371394</dbname>
-        <dbhost>sql12.freemysqlhosting.net</dbhost>
+        <dbname>localhost</dbname>
+        <dbhost>localhost</dbhost>
         <dbport>3306</dbport>
-        <dbuser>sql12371394</dbuser>
-        <dbpass>ZDB1WSCAV3</dbpass>
+        <dbuser>localhost</dbuser>
+        <dbpass>localhost</dbpass>
     </database>
     <!--database name="Omkar">
         <dbtype>postgresql</dbtype>
