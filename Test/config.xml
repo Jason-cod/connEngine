@@ -1,11 +1,19 @@
 <?xml version="1.0"?>
 <configuration>
-    <database name="Omkar">
+    <database name="mysql">
+        <dbtype>mysql</dbtype>
+        <dbname>sql12371394</dbname>
+        <dbhost>sql12.freemysqlhosting.net</dbhost>
+        <dbport>3306</dbport>
+        <dbuser>sql12371394</dbuser>
+        <dbpass>ZDB1WSCAV3</dbpass>
+    </database>
+    <!--database name="Omkar">
         <dbtype>postgresql</dbtype>
         <dbname>ofralcpg</dbname>
         <dbhost>raja.db.elephantsql.com</dbhost>
         <dbport>5432</dbport>
         <dbuser>ofralcpg</dbuser>
         <dbpass>VBM5SyqirJgXvr5ajHWdaEhxd-ozPU1i</dbpass>
-    </database>
+    </database-->
 </configuration>
