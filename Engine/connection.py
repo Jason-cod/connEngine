@@ -23,13 +23,16 @@ def run(query):
 
             cursor = connection.cursor()
             cursor.execute(query)
+        
             if query.lower().startswith("insert"): # ignoring case sensitive for insert keyword
                 connection.commit()
+        
             if query.lower().startswith("select"):
                 print(cursor.fetchone())
 
         except(Exception,psycopg2.Error) as error:
             print(error)
+        
         finally:
             if(connection):
                 cursor.close()
@@ -37,23 +40,32 @@ def run(query):
 
     elif dbtype == "mysql":
         import mysql.connector
+        
         try:
             connection = mysql.connector.connect(
                                     host= dbhost,
                                     user= dbuser,
                                     passwd= dbpass,
                                     database = dbname)
-            cursor = connection.cursor()
-            cursor.execute(query, multi=True)
-            if "insert" in query.lower(): # ignoring case sensitive for insert keyword
+            
+            cursor = connection.cursor(buffered=True)
+        
+            if "values((" in query.lower().replace(" ", ""):
+                cursor.execute(query,multi = True)
+            else:
+                cursor.execute(query)
+        
+            if "insert" in query.lower() or "create" in query.lower(): # ignoring case sensitive for insert keyword
                 connection.commit()
+        
             if query.lower().startswith("select"):
                 print(cursor.fetchone())
-
-        except(Exception,mysql.connector.Error) as error:
+            
+        except(Exception) as error:
             print(error)
+        
         finally:
-            if(connection):
+            if(connection.is_connected()):
                 cursor.close()
                 connection.close()
 
@@ -69,7 +81,9 @@ def run_DataTable(query):
     dbpass = Config.ReadConfig.GetInnerText(ObjConfigLocation,'/database/dbpass')
 
     if dbtype=="postgresql":
+        
         import psycopg2
+        
         try:
             connection = psycopg2.connect(user = dbuser ,
                                   password = dbpass,
@@ -79,36 +93,47 @@ def run_DataTable(query):
 
             cursor = connection.cursor()
             cursor.execute(query)
+        
             if "insert" in query.lower() or "create" in query.lower(): # ignoring case sensitive for insert keyword
                 connection.commit()
+        
             if query.lower().startswith("select"):
                 return cursor.fetchall()
 
         except(Exception,psycopg2.Error) as error:
             print(error)
+        
         finally:
             if(connection):
-                connection.commit()
                 cursor.close()
                 connection.close()
 
     elif dbtype == "mysql":
         import mysql.connector
+        
         try:
             connection = mysql.connector.connect(
                                     host= dbhost,
                                     user= dbuser,
                                     passwd= dbpass,
                                     database = dbname)
-            cursor = connection.cursor()
-            cursor.execute(query)
+            cursor = connection.cursor(buffered=True)
+            
+            if "[" in query.lower():
+                cursor.execute(query,multi = True)
+            else:
+                cursor.execute(query)
+            
             if query.lower().startswith("insert"): # ignoring case sensitive for insert keyword
                 connection.commit()
+            
             if query.lower().startswith("select"):
                 return cursor.fetchall()
+        
         except(Exception,mysql.connector.Error) as error:
             print(error)
+        
         finally:
-            if(connection):
+            if(connection.is_connected()):
                 cursor.close()
                 connection.close()
